@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equic="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Issue Detail Page </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <script src="js/helper.js"></script>
+        <script src="js/issues.js"></script>
+        <link rel="stylesheet" href="css/issues_style.css"></script>
+    </head>
+<body>
+    <!-- header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"> 
+                <a class="navbar-brand" href="index.html">
+                    Challenge  
+                </a>
+            </div> 
+            <p class="navbar-text">Issue Detail View </p>
+        </div>
+    </nav> 
+
+    <!-- Where the issue detail will appear -->
+    <div class="row" id="issueDetail"> </div>
+
+    <!-- Issue Detail DOM specifics -->
+    <script id="issueDetailTemplate" type="text/html">
+        <div class="issue-header"> 
+            <div class="issue-header-title"> 
+                <%= title %> 
+            </div>
+            <div class="row"> 
+                <div class="issue-header-number"> 
+                    #<%= number %>
+                </div>
+                <% if (labels != null) { %>
+                    <% _.each(labels, function (label) { %>
+                        <div class="issue-header-label" style="background-color:#<%=label.color%>;"> <%= label.name %> </div>
+                    <% }); %>
+                <% } %>
+            </div> 
+            <div class="row">
+                <div class="issue-header-state"> 
+                    <%= state %> 
+                </div>
+                <div class="issue-header-user">
+                    <a href=<%= user.html_url %>> 
+                        <%= user.login %>
+                    </a> 
+                    opened this issue  <%= calculateTime(created_at) %> ago - 
+                </div> 
+                <% if ( comments > 1 ) { %>
+                    <div class="issue-header-comment"> 
+                        <%= comments %> comments
+                    </div> 
+                <% } else { %>
+                    <div class="issue-header-comment"> 
+                        <%= comments %> comment 
+                    </div> 
+                <% } %>
+            </div> 
+        </div>                   
+        <div class="row" id="issue-info"> 
+            <img class="col-md-2 gravatar" alt="user-photo" src=<%= user.avatar_url %> />
+            <div class="col-md-9 issue-descrip-info"> 
+                <div class="row issue-user"> 
+                    <a href=<%= user.html_url %>> 
+                        <%= user.login %> 
+                    </a>
+                    <p class="issue-time"> 
+                        commented <%= calculateTime(created_at) %> ago 
+                    </p>
+                </div> 
+                <div class="issue-descrip"> 
+                    <%= findUser(body) %> 
+                </div>
+            </div>
+            <div class="col-md-1"> 
+                <p class="issue-label"> Labels : </p>
+                <% _.each(labels, function (label) { %>
+                    <div class="issue-header-label" style="background-color:#<%=label.color%>;"> <%= label.name %> </div>
+                <% }); %>
+            </div>
+        </div>
+    </script>
+    
+    <!-- Comment List -->
+    <ul id="commentsDetail"> </ul>
+
+    <!-- For Each Comment -->
+    <script id="commentsDetailTemplate" type="text/html">
+        <div class="row"> 
+            <img class="col-md-2 gravatar" alt="comment-user-photo" src=<%= user.avatar_url %> />
+            <div class="col-md-9 comment-descrip"> 
+                <div class="row issue-user"> 
+                    <a href=<%= user.html_url %>> 
+                        <%= user.login %> 
+                    </a>
+                    <p class="issue-time"> 
+                        commented <%= calculateTime(created_at) %> ago 
+                    </p>
+                </div> 
+                <div class="issue-descrip"> 
+                    <%= findUser(body) %> 
+                </div>
+            </div>
+        </div> 
+    </script>
+</body>
+</html>
