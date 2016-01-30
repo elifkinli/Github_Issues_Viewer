@@ -1,0 +1,139 @@
+/*	
+	issues_style.css
+	Date: 01/30/2016
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+	background-color: #0084b4;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-text {
+	color: white;
+}
+
+.row {
+	margin: 0px;
+}
+
+.col-md-9 {
+	padding: 0px;
+}
+
+#issueDetail {
+	padding: 10px 10px 0px 10px;
+}	
+
+.issue-header {
+	margin: 50px 100px 0px 150px;
+	padding-bottom: 10px;
+	font-weight: bold;
+	font-size: 30px;
+	border-bottom: 2px solid #f1f1f1;
+}
+
+.issue-header-number {
+	display: inline;
+	margin-top: 5px;
+	margin-right: 5px;
+	font-size: 20px;
+	font-style: italic;
+	color: #aaaaaa;
+}
+
+.issue-header-label {
+	display: inline;
+	padding: 2px;
+	margin-right: 5px;
+	font-weight: bold;
+	font-size: 10px;
+	color: white;
+}
+
+.issue-header-state {
+	display: inline;
+	margin: 0px 10px 10px 0px;
+	padding: 4px;
+	background-color: #6cc644;
+	border-radius: 5px; 
+	color: white;
+	font-size: 14px;
+}
+
+.issue-header-user {
+	display: inline;
+	color: black;
+	font-size: 12px;
+}
+
+.issue-header-comment {
+	display: inline;
+	font-size: 12px;
+}
+
+#issue-info {
+	margin: 0px 100px 0px 135px;
+	padding: 10px;
+}
+
+.gravatar {
+	margin-top: 10px;
+	padding: 0px;
+	width: 60px;
+}
+
+.issue-descrip-info {
+	margin: 10px;
+	border: 2px solid lightgray;
+}
+
+.issue-user {
+	padding: 5px;
+	background-color: #f1f1f1;
+	font-size: 15px;
+	color: #939393;
+}
+
+.issue-time {
+	display: inline;
+	font-size: 12px;
+}
+
+.issue-descrip {
+	padding: 5px;
+	word-wrap: break-word;
+}
+
+.issue-label {
+	padding-top: 15px;
+    font-weight: bold;
+}
+
+#commentsDetail {
+	margin: 0px 110px 0px 145px;
+	padding: 10px;
+}
+
+.comment {
+	margin-bottom: 10px;
+}
+
+.comment-user {
+	padding: 10px;
+}
+
+.comment-gravatar {
+	width: 50px;
+}
+
+.comment-descrip {
+	margin: 10px;
+	border: 2px solid lightgray;
+	word-wrap: break-word;
+}

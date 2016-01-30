@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equic="X-UA-Compatible" content="IE=edge, chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Issues Viewer for Github</title>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>       
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <script src="js/helper.js"></script>
+        <script src="js/index.js"></script>
+        <link rel="stylesheet" href="css/index_style.css"></script>
+    </head>
+<body>  
+    <!-- header -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"> 
+                <a class="navbar-brand" href="index.html">
+                    Challenge 
+                </a>
+            </div> 
+            <a class="navbar-text" href="https://github.com/rails/rails/issues">Issues Viewever for Github</a>
+        </div>
+    </nav> 
+
+    <!-- Issues List -->
+    <ul id="issues"> </ul>       
+
+    <!-- Issue -->
+    <script id="issueTemplate" type="text/html">
+        <div class="row"> 
+            <img class="col-md-2 gravatar" alt="user-photo" src=<%= user.avatar_url %> />
+            <div class="col-md-10 info"> 
+                <div class="row"> 
+                    <a class="issue-title" href="issue.html?issue=<%= number %>"> <%= title %> </a>
+                    <% if (labels != null) { %>
+                        <% _.each(labels, function(label) { %>
+                            <div class="issue-label" style="background-color:#<%=label.color%>;"> 
+                                <%= label.name %> 
+                            </div>
+                        <% }); %>
+                    <% } %>
+                </div>                
+                <div class="row"> 
+                    <div class="issue-number"> 
+                        #<%= number %> opened by 
+                        <a class="issue-user" href=<%= user.html_url %>> 
+                            <%= user.login %>
+                        </a>
+                        <p class="issue-time"> 
+                            <%= calculateTime(created_at) %> ago 
+                        </p> 
+                    </div> 
+                    <% if ( comments > 1 ) { %>
+                        <div class="issue-comment"> 
+                            - <%= comments %> comments
+                        </div> 
+                    <% } else { %>
+                        <div class="issue-comment"> 
+                            - <%= comments %> comment 
+                        </div> 
+                    <% } %>
+                </div> 
+                <div class="issue-descrip"> 
+                    <%= cleanLine(body) %>
+                </div>
+            </div>
+        </div> 
+    </script>
+</body>
+</html>
